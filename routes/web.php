@@ -16,4 +16,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/spj_dinas', 'module_spj/spj_dinas/Dashboard_dinas');
+Route::get('/spj_dinas', 'module_spj/spj_dinas/Dashboard_dinas@index');

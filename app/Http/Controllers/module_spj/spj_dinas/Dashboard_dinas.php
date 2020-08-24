@@ -7,5 +7,8 @@ use Illuminate\Http\Request;
 
 class Dashboard_dinas extends Controller
 {
-    return view('module_spj/vDinas/_dashboard_dinas');
+    public function index()
+    {
+        return view('module_spj/vDinas/_dashboard_dinas');
+    }
 }

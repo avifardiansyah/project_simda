@@ -13,4 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'module_spj/spj_dinas/Dashboard_dinas');
+Route::get('/', function () {
+    return view('welcome');
+});
+Route::get('/spj_dinas', 'module_spj/spj_dinas/Dashboard_dinas');

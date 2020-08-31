@@ -10,4 +10,11 @@ class Login extends Controller
     {
         return view('login');
     }
+    public function auth()
+    {
+        $username = $this->input->post('username');
+        $password = $this->input->post('password');
+
+        echo json_encode($username);
+    }
 }

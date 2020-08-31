@@ -16,7 +16,7 @@ Purchase: https://wrapbootstrap.com/theme/beyondadmin-adminapp-angularjs-mvc-WB0
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/img/icologoClp.ico" type="image/x-icon">
 
     <!--Basic Styles-->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
@@ -53,18 +53,21 @@ Purchase: https://wrapbootstrap.com/theme/beyondadmin-adminapp-angularjs-mvc-WB0
             <div class="loginbox-or">
                 <div class="or-line"></div>
             </div>
-            <div class="loginbox-textbox">
-                <input type="text" class="form-control" placeholder="Email" />
-            </div>
-            <div class="loginbox-textbox">
-                <input type="text" class="form-control" placeholder="Password" />
-            </div>
-            <div class="loginbox-forgot">
-                <a href="">Forgot Password?</a>
-            </div>
-            <div class="loginbox-submit">
-                <input type="button" class="btn btn-primary btn-block" value="Login">
-            </div>
+            <form action="/login" method="POST">
+                <div class="loginbox-textbox">
+                    <input required type="text" class="form-control" placeholder="NIP / Username" name="username" />
+                </div>
+                <div class="loginbox-textbox">
+                    <input required type="text" class="form-control" placeholder="Password" name="password" />
+                </div>
+                <div class="loginbox-forgot">
+                    <a href="">Forgot Password?</a>
+                </div>
+                <div class="loginbox-submit">
+                    <button type="submit" class="btn btn-primary btn-block">Login</button>
+                </div>
+            </form>
+
             <div class="loginbox-signup">
                 <a href="https://kominfo.cilacapkab.go.id">Dinas Komunikasi dan Informatika</a><br>
                 <a href="https://cilacapkab.go.id">Kabupaten Cilacap</a><br>

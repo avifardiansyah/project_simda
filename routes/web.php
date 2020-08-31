@@ -14,4 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'Login@index');
-Route::get('/spj_dinas', 'module_spj\spj_dinas\Dashboard_dinas@index');
+Route::post('/login', 'Login@auth');
+
+Route::get('/spj', 'module_spj\spj_dinas\Dashboard_dinas@index')->name('dinas.dashboard');
+Route::get('/dinas', 'Manajemen@index')->name('dinas.manajemen');

@@ -20,7 +20,7 @@
     <div class="page-header position-relative">
         <div class="header-title">
             <h1>
-                Blank Page
+                INI
             </h1>
         </div>
         <!--Header Buttons-->

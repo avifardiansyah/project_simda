@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/spj_dinas', 'module_spj\spj_dinas\Dashboard_dinas@index');
+Route::get('/', 'Login@index');
+Route::post('/login', 'Login@auth');
+
+Route::get('/spj', 'module_spj\spj_dinas\Dashboard_dinas@index')->name('dinas.dashboard');
+Route::get('/dinas', 'Manajemen@index')->name('dinas.manajemen');

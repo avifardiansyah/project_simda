@@ -1,6 +1,6 @@
-var InitiateSimpleDataTable = function() {
+var InitiateSimpleDataTable = function () {
     return {
-        init: function() {
+        init: function () {
             //Datatable Initiating
             var oTable = $('#simpledatatable').dataTable({
                 "sDom": "Tflt<'row DTTTFooter'<'col-sm-6'i><'col-sm-6'p>>",
@@ -19,25 +19,28 @@ var InitiateSimpleDataTable = function() {
                         "sNext": "Next"
                     }
                 },
-                "aoColumns": [
-                    {
+                "aoColumns": [{
                         "bSortable": false,
                         "width": '45px'
                     },
                     null,
-                    { "bSortable": false },
+                    {
+                        "bSortable": false
+                    },
                     null,
-                    { "bSortable": false }
+                    {
+                        "bSortable": false
+                    }
                 ],
-                
+
                 "aaSorting": []
             });
 
             //Check All Functionality
-            $('#simpledatatable thead th input[type=checkbox]').change(function() {
+            $('#simpledatatable thead th input[type=checkbox]').change(function () {
                 var set = $("#simpledatatable tbody tr input[type=checkbox]");
                 var checked = $(this).is(":checked");
-                $(set).each(function() {
+                $(set).each(function () {
                     if (checked) {
                         $(this).prop("checked", true);
                         $(this).parents('tr').addClass("active");
@@ -48,7 +51,7 @@ var InitiateSimpleDataTable = function() {
                 });
 
             });
-            $('#simpledatatable tbody tr input[type=checkbox]').change(function() {
+            $('#simpledatatable tbody tr input[type=checkbox]').change(function () {
                 $(this).parents('tr').toggleClass("active");
             });
 
@@ -57,9 +60,9 @@ var InitiateSimpleDataTable = function() {
     };
 
 }();
-var InitiateEditableDataTable = function() {
+var InitiateEditableDataTable = function () {
     return {
-        init: function() {
+        init: function () {
             //Datatable Initiating
             var oTable = $('#editabledatatable').dataTable({
                 "aLengthMenu": [
@@ -94,14 +97,16 @@ var InitiateEditableDataTable = function() {
                     null,
                     null,
                     null,
-                    { "bSortable": false }
+                    {
+                        "bSortable": false
+                    }
                 ]
             });
 
             var isEditing = null;
 
             //Add New Row
-            $('#editabledatatable_new').click(function(e) {
+            $('#editabledatatable_new').click(function (e) {
                 e.preventDefault();
                 var aiNew = oTable.fnAddData([
                     '', '', '', '',
@@ -113,7 +118,7 @@ var InitiateEditableDataTable = function() {
             });
 
             //Delete an Existing Row
-            $('#editabledatatable').on("click", 'a.delete', function(e) {
+            $('#editabledatatable').on("click", 'a.delete', function (e) {
                 e.preventDefault();
 
                 if (confirm("Are You Sure To Delete This Row?") == false) {
@@ -126,7 +131,7 @@ var InitiateEditableDataTable = function() {
             });
 
             //Cancel Editing or Adding a Row
-            $('#editabledatatable').on("click", 'a.cancel', function(e) {
+            $('#editabledatatable').on("click", 'a.cancel', function (e) {
                 e.preventDefault();
                 if ($(this).attr("data-mode") == "new") {
                     var nRow = $(this).parents('tr')[0];
@@ -139,7 +144,7 @@ var InitiateEditableDataTable = function() {
             });
 
             //Edit A Row
-            $('#editabledatatable').on("click", 'a.edit', function(e) {
+            $('#editabledatatable').on("click", 'a.edit', function (e) {
                 e.preventDefault();
 
                 var nRow = $(this).parents('tr')[0];
@@ -155,7 +160,7 @@ var InitiateEditableDataTable = function() {
             });
 
             //Save an Editing Row
-            $('#editabledatatable').on("click", 'a.save', function(e) {
+            $('#editabledatatable').on("click", 'a.save', function (e) {
                 e.preventDefault();
                 if (this.innerHTML.indexOf("Save") >= 0) {
                     saveRow(oTable, isEditing);
@@ -219,9 +224,9 @@ var InitiateEditableDataTable = function() {
 
     };
 }();
-var InitiateExpandableDataTable = function() {
+var InitiateExpandableDataTable = function () {
     return {
-        init: function() {
+        init: function () {
             /* Formatting function for row details */
             function fnFormatDetails(oTable, nTr) {
                 var aData = oTable.fnGetData(nTr);
@@ -242,11 +247,11 @@ var InitiateExpandableDataTable = function() {
             var nCloneTd = document.createElement('td');
             nCloneTd.innerHTML = '<i class="fa fa-plus-square-o row-details"></i>';
 
-            $('#expandabledatatable thead tr').each(function() {
+            $('#expandabledatatable thead tr').each(function () {
                 this.insertBefore(nCloneTh, this.childNodes[0]);
             });
 
-            $('#expandabledatatable tbody tr').each(function() {
+            $('#expandabledatatable tbody tr').each(function () {
                 this.insertBefore(nCloneTd.cloneNode(true), this.childNodes[0]);
             });
 
@@ -255,11 +260,18 @@ var InitiateExpandableDataTable = function() {
              */
             var oTable = $('#expandabledatatable').dataTable({
                 "sDom": "Tflt<'row DTTTFooter'<'col-sm-6'i><'col-sm-6'p>>",
-                "aoColumnDefs": [
-                    { "bSortable": false, "aTargets": [0] },
-                    { "bVisible": false, "aTargets": [6] }
+                "aoColumnDefs": [{
+                        "bSortable": false,
+                        "aTargets": [0]
+                    },
+                    {
+                        "bVisible": false,
+                        "aTargets": [6]
+                    }
                 ],
-                "aaSorting": [[1, 'asc']],
+                "aaSorting": [
+                    [1, 'asc']
+                ],
                 "aLengthMenu": [
                     [5, 15, 20, -1],
                     [5, 15, 20, "All"]
@@ -287,8 +299,7 @@ var InitiateExpandableDataTable = function() {
                 }
             });
 
-
-            $('#expandabledatatable').on('click', ' tbody td .row-details', function() {
+            $('#expandabledatatable').on('click', ' tbody td .row-details', function () {
                 var nTr = $(this).parents('tr')[0];
                 if (oTable.fnIsOpen(nTr)) {
                     /* This row is already open - close it */
@@ -301,24 +312,26 @@ var InitiateExpandableDataTable = function() {
                 }
             });
 
-            $('#expandabledatatable_column_toggler input[type="checkbox"]').change(function() {
+            $('#expandabledatatable_column_toggler input[type="checkbox"]').change(function () {
                 var iCol = parseInt($(this).attr("data-column"));
                 var bVis = oTable.fnSettings().aoColumns[iCol].bVisible;
                 oTable.fnSetColumnVis(iCol, (bVis ? false : true));
             });
 
-            $('body').on('click', '.dropdown-menu.hold-on-click', function(e) {
+            $('body').on('click', '.dropdown-menu.hold-on-click', function (e) {
                 e.stopPropagation();
             });
         }
     };
 }();
-var InitiateSearchableDataTable = function() {
+var InitiateSearchableDataTable = function () {
     return {
-        init: function() {
+        init: function () {
             var oTable = $('#searchable').dataTable({
                 "sDom": "Tflt<'row DTTTFooter'<'col-sm-6'i><'col-sm-6'p>>",
-                "aaSorting": [[1, 'asc']],
+                "aaSorting": [
+                    [1, 'asc']
+                ],
                 "aLengthMenu": [
                     [5, 15, 20, -1],
                     [5, 15, 20, "All"]
@@ -346,7 +359,7 @@ var InitiateSearchableDataTable = function() {
                 }
             });
 
-            $("tfoot input").keyup(function() {
+            $("tfoot input").keyup(function () {
                 /* Filter on the column (the index) of this element */
                 oTable.fnFilter(this.value, $("tfoot input").index(this));
             });

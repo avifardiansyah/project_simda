@@ -5,7 +5,7 @@
             <div class="navbar-header pull-left">
                 <a href="#" class="navbar-brand">
                     <small>
-                        <img src="assets/img/logo.png" alt="" />
+                        <img src="assets/img/superjon_full.png" alt="" />
                     </small>
                 </a>
             </div>

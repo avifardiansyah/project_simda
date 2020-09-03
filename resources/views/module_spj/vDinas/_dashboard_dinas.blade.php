@@ -1,18 +1,16 @@
 @extends('module_spj.layout.lay_master')
-
+@php
+$help = new App\Help;
+@endphp
 @section('content')
 <div class="page-content">
     <!-- Page Breadcrumb -->
     <div class="page-breadcrumbs">
         <ul class="breadcrumb">
-            <li>
+            <li class="active">
                 <i class="fa fa-home"></i>
-                <a href="#">Home</a>
+                <a href="{{route('dinas.dashboard')}}">Home</a>
             </li>
-            <li>
-                <a href="#">More Pages</a>
-            </li>
-            <li class="active">Blank Page</li>
         </ul>
     </div>
     <!-- /Page Breadcrumb -->
@@ -20,7 +18,7 @@
     <div class="page-header position-relative">
         <div class="header-title">
             <h1>
-                Blank Page
+                Selamat Datang di SUPERJON (Surat Pertanggungjawaban Online) Kabupaten Cilacap
             </h1>
         </div>
         <!--Header Buttons-->

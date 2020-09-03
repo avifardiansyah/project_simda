@@ -20,7 +20,7 @@ $help = new App\Help;
             </a>
         </li>
         <!--UI Elements-->
-        <li class="{{$help->set_active2(['dinas.manajemen'])}}">
+        <li class="{{$help->set_active2(['dinas.manajemen.rka'])}}">
             <a href="#" class="menu-dropdown">
                 <i class="menu-icon fa fa-desktop"></i>
                 <span class="menu-text"> Manajemen </span>
@@ -29,8 +29,8 @@ $help = new App\Help;
             </a>
 
             <ul class="submenu">
-                <li class="{{$help->set_active('dinas.manajemen')}}">
-                    <a href="{{route('dinas.manajemen')}}">
+                <li class="{{$help->set_active('dinas.manajemen.rka')}}">
+                    <a href="{{route('dinas.manajemen.rka')}}">
                         <span class="menu-text">RKA</span>
                     </a>
                 </li>

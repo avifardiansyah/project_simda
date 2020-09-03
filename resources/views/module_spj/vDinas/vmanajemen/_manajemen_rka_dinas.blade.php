@@ -55,13 +55,28 @@
                         <table class="table table-striped table-responsive table-hover" id="tblrka">
                             <thead>
                                 <tr>
-                                    <th>No.</th>
+                                    <th width="5%">No.</th>
+                                    <th width="25%">Program.</th>
+                                    <th width="25%">Kegiatan.</th>
+                                    <th style="text-align:center" width="15%">Anggaran.</th>
+                                    <th style="text-align:center">PPTK.</th>
+                                    <th style="text-align:center">BPT.</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @php
+                                $no=1;
+                                @endphp
+                                @foreach ($datakeg as $value)
                                 <tr>
-                                    <td>1.</td>
+                                    <td>{{$no++}}</td>
+                                    <td>{{$value->ket_program}}</td>
+                                    <td>{{$value->ket_kegiatan}}</td>
+                                    <td style="text-align: right;">Rp. {{number_format($value->anggaran,0,',','.')}}</td>
+                                    <td></td>
+                                    <td></td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

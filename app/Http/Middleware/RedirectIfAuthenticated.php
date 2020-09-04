@@ -18,8 +18,10 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if (Auth::guard($guard)->check()) {
-            return redirect(RouteServiceProvider::HOME);
+        //dd($next, $request, $guard, Auth::guard($guard)->check());
+        if (!Auth::guard($guard)->check()) {
+            Auth::guard($guard)->logout();
+            return redirect()->route('login.form');
         }
 
         return $next($request);

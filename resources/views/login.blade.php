@@ -19,21 +19,21 @@ Purchase: https://wrapbootstrap.com/theme/beyondadmin-adminapp-angularjs-mvc-WB0
     <link rel="shortcut icon" href="assets/img/icologoClp.ico" type="image/x-icon">
 
     <!--Basic Styles-->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet" />
     <link id="bootstrap-rtl-link" href="" rel="stylesheet" />
-    <link href="assets/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="{{asset('assets/css/font-awesome.min.css')}}" rel="stylesheet" />
 
     <!--Fonts-->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300" rel="stylesheet" type="text/css">
 
     <!--Beyond styles-->
-    <link id="beyond-link" href="assets/css/beyond.min.css" rel="stylesheet" />
-    <link href="assets/css/demo.min.css" rel="stylesheet" />
-    <link href="assets/css/animate.min.css" rel="stylesheet" />
+    <link id="beyond-link" href="{{asset('assets/css/beyond.min.css')}}" rel="stylesheet" />
+    <link href="{{asset('assets/css/demo.min.css')}}" rel="stylesheet" />
+    <link href="{{asset('assets/css/animate.min.css')}}" rel="stylesheet" />
     <link id="skin-link" href="" rel="stylesheet" type="text/css" />
 
     <!--Skin Script: Place this script in head to load scripts for skins and rtl support-->
-    <script src="assets/js/skins.min.js"></script>
+    <script src="{{asset('assets/js/skins.min.js')}}"></script>
 </head>
 <!--Head Ends-->
 <!--Body-->
@@ -43,26 +43,26 @@ Purchase: https://wrapbootstrap.com/theme/beyondadmin-adminapp-angularjs-mvc-WB0
         <div class="loginbox bg-white">
             <div class="loginbox-title"></div>
             <div class="loginbox-social">
-                <div class="social-title "><img src="assets/img/logoClp-min.png" alt="" style="width: 75px;"></div>
+                <div class="social-title "><img src="{{asset('assets/img/logoClp-min.png')}}" alt="" style="width: 75px;"></div>
                 <div class="social-buttons">
                     <a href="">
-                        <img src="assets/img/superjon full.png" alt="" style="width: 200px;">
+                        <img src="{{asset('assets/img/superjon_full.png')}}" alt="" style="width: 200px;">
                     </a>
                 </div>
             </div>
             <div class="loginbox-or">
                 <div class="or-line"></div>
             </div>
-            <form action="/login" method="POST">
+            <form method="POST" action="{{route('login.proses')}}">
+                @csrf
                 <div class="loginbox-textbox">
                     <input required type="text" class="form-control" placeholder="NIP / Username" name="username" />
                 </div>
                 <div class="loginbox-textbox">
-                    <input required type="text" class="form-control" placeholder="Password" name="password" />
+                    <input required type="password" class="form-control" placeholder="Password" name="password" />
                 </div>
-                <div class="loginbox-forgot">
-                    <a href="">Forgot Password?</a>
-                </div>
+
+
                 <div class="loginbox-submit">
                     <button type="submit" class="btn btn-primary btn-block">Login</button>
                 </div>
@@ -77,13 +77,20 @@ Purchase: https://wrapbootstrap.com/theme/beyondadmin-adminapp-angularjs-mvc-WB0
     </div>
 
     <!--Basic Scripts-->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="{{asset('assets/js/jquery.min.js')}}"></script>
+    <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('assets/js/slimscroll/jquery.slimscroll.min.js')}}"></script>
 
     <!--Beyond Scripts-->
-    <script src="assets/js/beyond.js"></script>
+    <script src="{{asset('assets/js/beyond.js')}}"></script>
 
+    <script>
+        var msg = '{{Session::get('alert')}}';
+        var exist = '{{Session::has('alert')}}';
+        if(exist){
+            alert(msg);
+        }
+    </script>
 
 </body>
 <!--Body Ends-->

@@ -25,13 +25,13 @@
                                     <img src="assets/img/avatars/adam-jansen.jpg">
                                 </div>
                                 <section>
-                                    <h2><span class="profile"><span>David Stevenson</span></span></h2>
+                                    <h2><span class="profile"><span>{{session('user')['nama']}}</span></span></h2>
                                 </section>
                             </a>
                             <!--Login Area Dropdown-->
                             <ul class="pull-right dropdown-menu dropdown-arrow dropdown-login-area">
-                                <li class="username"><a>David Stevenson</a></li>
-                                <li class="email"><a>David.Stevenson@live.com</a></li>
+                                <li class="username"><a>{{session('user')['username']}}</a></li>
+                                <li class="email"><a>{{session('user')['nama_pendek']}}</a></li>
                                 <!--Avatar Area-->
                                 <li>
                                     <div class="avatar-area">
@@ -48,7 +48,7 @@
 
                                 <!--/Theme Selector Area-->
                                 <li class="dropdown-footer">
-                                    <a href="login.html">
+                                    <a href="{{route('login.logout')}}">
                                         Sign out
                                     </a>
                                 </li>

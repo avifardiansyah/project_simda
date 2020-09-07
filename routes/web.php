@@ -32,3 +32,6 @@ Route::get('/cetak/spj', 'module_cetak\Cetak@cetakSPJ')->name('cetak.spj');
 Route::get('/cetak/kw', 'module_cetak\Cetak@cetakKW')->name('cetak.kw');
 Route::get('/cetak/bpj', 'module_cetak\Cetak@cetakBpj')->name('cetak.bpj');
 Route::get('/cetak/brp', 'module_cetak\Cetak@cetakBrp')->name('cetak.brp');
+Route::get('/spj', 'module_spj\spj_dinas\Dashboard_dinas@index')->name('dinas.dashboard');
+Route::get('/rkadinas', 'module_spj\spj_dinas\Manajemen@rka')->name('dinas.manajemen.rka');
+Route::get('/pejabatdinas', 'module_spj\spj_dinas\Manajemen@pejabat')->name('dinas.manajemen.pejabat');

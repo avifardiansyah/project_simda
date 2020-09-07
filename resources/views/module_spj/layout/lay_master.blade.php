@@ -91,6 +91,7 @@ Purchase: https://wrapbootstrap.com/theme/beyondadmin-adminapp-angularjs-mvc-WB0
     <script src="{{asset('assets/vendor/datatables.net-responsive-bs/js/responsive.bootstrap.js')}}"></script>
     <script src="{{asset('assets/vendor/datatables.net-scroller/js/dataTables.scroller.min.js')}}"></script>
     <!--Beyond Scripts-->
+    <script src="{{asset('assets/js/select2/select2.js')}}"></script>
     <script src="{{asset('assets/js/beyond.min.js')}}"></script>
     @yield('javascript')
     <!--Page Related Scripts-->

@@ -18,6 +18,11 @@ class SpjModel extends Model
             ->where('a.idjenkedudupeg', '!=', '99')
             ->get();
     }
+    public function getstatus()
+    {
+        return DB::table('superjon_db.m_status')
+            ->get();
+    }
     /* END */
 
     /* DINAS ========================================================= */

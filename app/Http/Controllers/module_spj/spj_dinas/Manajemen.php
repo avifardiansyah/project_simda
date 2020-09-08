@@ -12,10 +12,31 @@ class Manajemen extends Controller
     {
         $this->model = new SpjModel();
     }
+    /* RKA */
     public function rka()
     {
         $kodes = '2101001';
         $spj['datakeg'] = $this->model->getkegiatandinas($kodes);
         return view('module_spj/vDinas/vmanajemen/_manajemen_rka_dinas', $spj);
     }
+    /* END RKA */
+
+    /* PEJABAT */
+    public function pejabat()
+    {
+        $kodes = '2101001';
+        $kode_dinas = 96;
+        $spj['kodes'] = $kodes;
+        /* $spj['datakeg'] = $this->model->getkegiatandinas($kodes); */
+        $spj['pegawai'] = $this->model->getpnsdinas($kode_dinas);
+        $spj['statuspjb'] = $this->model->getstatus();
+        return view('module_spj/vDinas/vmanajemen/_manajemen_pejabat_dinas', $spj);
+    }
+    public function kegiatanperkodes()
+    {
+        $kodes = $this->input->get('kodes');
+        $a = $this->model->getkegiatandinas($kodes);
+        echo json_encode($a);
+    }
+    /* END PEJABAT */
 }

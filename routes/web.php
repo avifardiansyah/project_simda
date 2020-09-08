@@ -13,9 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'Login@index');
-Route::post('/login', 'Login@auth');
+Route::get('/', 'Login@index')->name('login.form');
+Route::post('/login', 'Login@auth')->name('login.proses');
+Route::get('/logout', 'Login@logout')->name('login.logout');
 
-Route::get('/spj', 'module_spj\spj_dinas\Dashboard_dinas@index')->name('dinas.dashboard');
-Route::get('/rkadinas', 'module_spj\spj_dinas\Manajemen@rka')->name('dinas.manajemen.rka');
-Route::get('/pejabatdinas', 'module_spj\spj_dinas\Manajemen@pejabat')->name('dinas.manajemen.pejabat');
+Route::group(['middleware' => ['guest:dinas']], function () {
+    Route::get('/spj', 'module_spj\spj_dinas\Dashboard_dinas@index')->name('dinas.dashboard');
+    Route::get('/dinas', 'module_spj\spj_dinas\Manajemen@rka')->name('dinas.manajemen.rka');
+    Route::get('/pejabatdinas', 'module_spj\spj_dinas\Manajemen@pejabat')->name('dinas.manajemen.pejabat');
+});
+
+

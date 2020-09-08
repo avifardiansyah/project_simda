@@ -90,6 +90,8 @@
                     </div>
                     <div class="widget-body">
                         <form class="form-horizontal" role="form">
+                            <input type="text" hidden id="kodes" name="kodes" value="<?= $kodes; ?>">
+                            <input type="text" hidden id="idtrans" name="idtrans">
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-1 control-label no-padding-right">NIP</label>
                                 <div class="col-sm-10">
@@ -117,10 +119,15 @@
                             <div class="form-group">
                                 <label for="inputPassword3" class="col-sm-1 control-label no-padding-right">Status</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="inputPassword3" placeholder="Status Pejabat">
+                                    <select name="statuspjb" id="statuspjb" class="form-control" onchange="statpilih()">
+                                        <option value="0">--Pilih Status Pejabat--</option>
+                                        @foreach ($statuspjb as $statuspjb)
+                                        <option value="<?= $statuspjb->kdstat; ?>"><?= $statuspjb->ketstatus . ' - ' . $statuspjb->ket; ?></option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
-                            <div class="widget">
+                            <div class="widget flat" id="showkeg">
                                 <div class="widget-header bg-lightred">
                                     <span class="widget-caption"><i class="fa fa-th-large"></i> Kegiatan Dinas </span>
                                 </div>
@@ -135,7 +142,7 @@
                                                 <th style="text-align:center">Aksi.</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody id="bdkegiatan">
 
                                         </tbody>
                                     </table>
@@ -144,7 +151,8 @@
 
                             <div class="form-group">
                                 <div class="col-sm-offset-1 col-sm-10">
-                                    <button type="button" style="float: right;" class="btn btn-blue btn-lg">Sign in</button>
+                                    <a type="button" style="float: right;" class="btn btn-maroon btn-lg">Batal</a>
+                                    <a type="button" style="float: right;" class="btn btn-sky btn-lg">Simpan</a>
                                 </div>
                             </div>
                         </form>
@@ -170,7 +178,7 @@
                             <th width="5%">No.</th>
                             <th width="25%">NIP.</th>
                             <th>Nama.</th>
-                            <th style="text-align:center" width="25%">Pangkat.</th>
+                            <th style="text-align:center">Pangkat.</th>
                             <th style="text-align:center" width="10%">Gol.</th>
                         </tr>
                     </thead>
@@ -198,8 +206,20 @@
     $(document).ready(function() {
         $('#tblpejabat').DataTable();
         $('#tblpgw').DataTable();
+        var showkeg = document.getElementById('showkeg');
+        showkeg.style.display = "none";
     })
 
+    function statpilih() {
+        var kdstat = $('#statuspjb').val();
+        var kodes = $('#kodes').val();
+        if (kdstat == 6 || kdstat == 4) {
+            showkeg.style.display = "block";
+            listkegiatanopd(kodes);
+        } else {
+            showkeg.style.display = "none";
+        }
+    }
     $('#btncek').on('click', function() {
         $('#mdlcek').modal('show');
     })
@@ -210,5 +230,21 @@
         $('[name="gol"]').val($(this).attr('data-gol'));
         $('#mdlcek').modal('hide');
     })
+
+    function listkegiatanopd(kodes) {
+        $.ajax({
+            url: "{{route('dinas.manajemen.list')}}",
+            data: {
+                kodes: kodes
+            },
+            dataType: 'JSON',
+            type: 'GET',
+            cache: false,
+            async: true,
+            success: function(e) {
+
+            }
+        })
+    }
 </script>
 @endsection

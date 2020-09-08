@@ -89,7 +89,7 @@
                         </div>
                     </div>
                     <div class="widget-body">
-                        <form class="form-horizontal" role="form">
+                        <form class="form-horizontal" role="form" id="formaddpjb">
                             <input type="text" hidden id="kodes" name="kodes" value="<?= $kodes; ?>">
                             <input type="text" hidden id="idtrans" name="idtrans">
                             <div class="form-group">
@@ -98,7 +98,7 @@
                                     <input type="text" class="form-control" id="nip" name="nip" placeholder="NIP (Nomor Induk Pegawai)">
                                 </div>
                                 <div class="col-sm-1">
-                                    <button type="button" id="btncek" class="btn btn-circle btn-blue btn-xs">...</button>
+                                    <a type="button" id="btncek" class="btn btn-circle btn-blue btn-xs">...</a>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -116,6 +116,7 @@
                                     <input type="text" class="form-control" id="gol" name="gol" placeholder="Golongan">
                                 </div>
                             </div>
+
                             <div class="form-group">
                                 <label for="inputPassword3" class="col-sm-1 control-label no-padding-right">Status</label>
                                 <div class="col-sm-10">
@@ -136,10 +137,10 @@
                                         <thead>
                                             <tr>
                                                 <th width="5%">No.</th>
-                                                <th width="25%">Kodek.</th>
-                                                <th width="25%">KET Kegiatan.</th>
-                                                <th style="text-align:center" width="15%">Anggaran.</th>
-                                                <th style="text-align:center">Aksi.</th>
+                                                <th width="10%">Kodek.</th>
+                                                <th>KET Kegiatan.</th>
+                                                <th style="text-align:center" width="20%">Anggaran.</th>
+                                                <th style="text-align:center" width="5%">Aksi.</th>
                                             </tr>
                                         </thead>
                                         <tbody id="bdkegiatan">
@@ -152,7 +153,7 @@
                             <div class="form-group">
                                 <div class="col-sm-offset-1 col-sm-10">
                                     <a type="button" style="float: right;" class="btn btn-maroon btn-lg">Batal</a>
-                                    <a type="button" style="float: right;" class="btn btn-sky btn-lg">Simpan</a>
+                                    <a type="button" style="float: right;" class="btn btn-sky btn-lg" id="btnsimpan">Simpan</a>
                                 </div>
                             </div>
                         </form>
@@ -231,9 +232,14 @@
         $('#mdlcek').modal('hide');
     })
 
+    function formatNumber(num) {
+        return 'Rp. ' + num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+    }
+
     function listkegiatanopd(kodes) {
+        var bdkegiatan = '';
         $.ajax({
-            url: "{{route('dinas.manajemen.list')}}",
+            url: "{{route('dinas.manajemen.list.kegiatan')}}",
             data: {
                 kodes: kodes
             },
@@ -243,8 +249,57 @@
             async: true,
             success: function(e) {
 
+                for (let i = 0; i < e.length; i++) {
+                    var no = 1 + i;
+                    bdkegiatan += '<tr>' +
+                        '<td>' + no + '</td>' +
+                        '<td>' + e[i].kodek + '</td>' +
+                        '<td>' + e[i].ket_kegiatan + '</td>' +
+                        '<td style="text-align: center;">' + formatNumber(e[i].anggaran) + '</td>' +
+                        '<td style="text-align: center;"><label><input type="checkbox" id="plhkeg" name="plhkeg[]"><span class="text"></span></label></td>' +
+                        '</tr>';
+                }
+                $('#bdkegiatan').html(bdkegiatan);
+                datakegiatan();
             }
         })
     }
+
+    function datakegiatan() {
+        $('#tblkegiatan').DataTable({
+            "aLengthMenu": [
+                [-1],
+                ["All"]
+            ],
+            "language": {
+                search: ""
+            },
+            "deferRender": true,
+            "scrollY": 500,
+            "scrollCollapse": true,
+            "scroller": true
+        });
+        $('#tblkegiatan').each(function() {
+            var datatable = $(this);
+            // SEARCH - Add the placeholder for Search and Turn this into in-line form control
+            var search_input = datatable.closest('.dataTables_wrapper').find('div[id$=_filter] input');
+            search_input.attr('placeholder', 'Search');
+            search_input.removeClass('form-control-sm');
+            // LENGTH - Inline-Form control
+            var length_sel = datatable.closest('.dataTables_wrapper').find('div[id$=_length] select');
+            length_sel.removeClass('form-control-sm');
+        });
+    }
+    $('#btnsimpan').on('click', function() {
+        var formaddpjb = new FormData($('#formaddpjb')[0]);
+        var idtr = $('#idtrans').val();
+        var url;
+        if (idtr == "") {
+            url = "{{route('dinas.manajemen.insert')}}";
+        } else {
+            url = "{{route('dinas.manajemen.edit')}}";
+        }
+
+    })
 </script>
 @endsection

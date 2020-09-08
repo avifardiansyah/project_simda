@@ -15,7 +15,7 @@ class Manajemen extends Controller
     /* RKA */
     public function rka()
     {
-        $kodes = '2101001';
+        $kodes = session('user')['kodes'];
         $spj['datakeg'] = $this->model->getkegiatandinas($kodes);
         return view('module_spj/vDinas/vmanajemen/_manajemen_rka_dinas', $spj);
     }
@@ -24,7 +24,7 @@ class Manajemen extends Controller
     /* PEJABAT */
     public function pejabat()
     {
-        $kodes = '2101001';
+        $kodes = session('user')['kodes'];
         $kode_dinas = 96;
         $spj['kodes'] = $kodes;
         /* $spj['datakeg'] = $this->model->getkegiatandinas($kodes); */
@@ -32,9 +32,9 @@ class Manajemen extends Controller
         $spj['statuspjb'] = $this->model->getstatus();
         return view('module_spj/vDinas/vmanajemen/_manajemen_pejabat_dinas', $spj);
     }
-    public function kegiatanperkodes()
+    public function kegiatanperkodes(Request $req)
     {
-        $kodes = $this->input->get('kodes');
+        $kodes = $req->kodes;
         $a = $this->model->getkegiatandinas($kodes);
         echo json_encode($a);
     }

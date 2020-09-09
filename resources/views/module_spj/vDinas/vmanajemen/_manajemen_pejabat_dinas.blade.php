@@ -65,7 +65,7 @@
                                     <th style="text-align:center">Aksi.</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="bdpejabat">
 
                             </tbody>
                         </table>
@@ -89,7 +89,8 @@
                         </div>
                     </div>
                     <div class="widget-body">
-                        <form class="form-horizontal" role="form" id="formaddpjb">
+                        <form class="form-horizontal" role="form" id="formaddpjb" method="POST" enctype="multipart/form-data">
+                            @csrf
                             <input type="text" hidden id="kodes" name="kodes" value="<?= $kodes; ?>">
                             <input type="text" hidden id="idtrans" name="idtrans">
                             <div class="form-group">
@@ -209,7 +210,34 @@
         $('#tblpgw').DataTable();
         var showkeg = document.getElementById('showkeg');
         showkeg.style.display = "none";
+        pejabatdinas();
     })
+
+    function pejabatdinas() {
+        var bdpejabat = '';
+        $.ajax({
+            url: "{{route('dinas.manajemen.list.pejabat')}}",
+            type: 'GET',
+            dataType: 'JSON',
+            cache: false,
+            async: true,
+            success: function(e) {
+                for (let i = 0; i < e.length; i++) {
+                    var n = 1 + i;
+
+                    bdpejabat += '<tr>' +
+                        '<td>' + n + '</td>' +
+                        '<td>' + e[i].nip + '</td>' +
+                        '<td>' + e[i].gdp + ' ' + e[i].nama + ' ' + e[i].gdb + '</td>' +
+                        '<td>' + e[i].ketstatus + ' - ' + e[i].ket + '</td>' +
+                        '<td></td>' +
+                        '<td></td>' +
+                        +'</tr>';
+                }
+                $('#bdpejabat').html(bdpejabat);
+            }
+        })
+    }
 
     function statpilih() {
         var kdstat = $('#statuspjb').val();
@@ -256,7 +284,7 @@
                         '<td>' + e[i].kodek + '</td>' +
                         '<td>' + e[i].ket_kegiatan + '</td>' +
                         '<td style="text-align: center;">' + formatNumber(e[i].anggaran) + '</td>' +
-                        '<td style="text-align: center;"><label><input type="checkbox" id="plhkeg" name="plhkeg[]"><span class="text"></span></label></td>' +
+                        '<td style="text-align: center;"><label><input type="checkbox" id="plhkeg" name="plhkeg[]" value="' + e[i].kodek + '"><span class="text"></span></label></td>' +
                         '</tr>';
                 }
                 $('#bdkegiatan').html(bdkegiatan);
@@ -295,11 +323,26 @@
         var idtr = $('#idtrans').val();
         var url;
         if (idtr == "") {
-            url = "{{route('dinas.manajemen.insert')}}";
+            url = "{{route('dinas.manajemen.pejabat.post')}}";
         } else {
-            url = "{{route('dinas.manajemen.edit')}}";
+            url = "";
         }
-
+        $.ajax({
+            url: url,
+            data: formaddpjb,
+            type: 'POST',
+            dataType: 'JSON',
+            processData: false,
+            contentType: false,
+            success: function(e) {
+                if (e.stat == true) {
+                    Notify('Berhasil simpan data', 'top-right', '5000', 'success', 'fa-check', true);
+                    document.getElementById("formaddpjb").reset();
+                    pejabatdinas();
+                    return false;
+                }
+            }
+        })
     })
 </script>
 @endsection

@@ -26,15 +26,15 @@ Route::group(['middleware' => ['guest:dinas']], function () {
     Route::get('/dinas/list/pejabat', 'module_spj\spj_dinas\Manajemen@pejabatperkodes')->name('dinas.manajemen.list.pejabat');
 
     Route::post('/dinas/pejabat/simpan', 'module_spj\spj_dinas\Manajemen@simpanPejabatDinas')->name('dinas.manajemen.pejabat.post');
-
 });
 
 Route::group(['middleware' => ['guest:admindinas']], function () {
-    Route::get('/admin/dinas', 'module_spj\spj_dinas\Dashboard_dinas@index')->name('dinas.dashboard');
+    Route::get('/admin/dinas', 'module_spj\spj_dinas\admin\Dashboard_admin@index')->name('admindinas.dashboard');
+    Route::get('/admin/dinas/penatausahaan/spj', 'module_spj\spj_dinas\admin\Penatausahaan@spjbpt')->name('admindinas.penatausahaan');
+    Route::get('/admin/dinas/penatausahaan/rinciankegiatan/{id}', 'module_spj\spj_dinas\admin\Penatausahaan@rinciankeg')->name('admindinas.penatausahaan.rincian');
 });
 
 //cetak
 Route::get('/cetak/bku', 'module_cetak\Cetak@cetakBKU')->name('cetak.bku');
 Route::get('/cetak/spj', 'module_cetak\Cetak@cetakSPJ')->name('cetak.spj');
 Route::get('/cetak/kw', 'module_cetak\Cetak@cetakKW')->name('cetak.kw');
-

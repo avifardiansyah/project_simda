@@ -61,11 +61,8 @@ class Manajemen extends Controller
         } else {
             $urut = $a + 1;
         }
+        $kdk = $post->plhkeg;
 
-        $kdk['kodek'] = $post->plhkeg;/* 
-        for ($i = 0; $i < count($kdk); $i++) {
-            $selectkodek[] = $kdk[$i];
-        } */
         $datatrans['kodes'] = $kodes;
         $datatrans['nip'] = $nip;
         $datatrans['status'] = $statpeg;
@@ -74,12 +71,11 @@ class Manajemen extends Controller
         $datatrans['tgluptrans'] = $tgluptrans;
         $datatrans['kettrans'] = 1;
         $datatrans['kun'] = 0;
-        //$this->model->savePejabatDinas($datatrans);
+        $this->model->savePejabatDinas($datatrans);
         if ($statpeg == 6 || $statpeg == 4) {
-            $kodk = $this->model->updateTransaksiNipKodek($kodes, $nip, $kdk, $statpeg);
+            $this->model->updateTransaksiNipKodek($kodes, $nip, $kdk, $statpeg);
         }
-        // echo json_encode(['stat' => true]);
-        echo json_encode($kodk);
+        echo json_encode(['stat' => true]);
     }
     /* END PEJABAT */
 }

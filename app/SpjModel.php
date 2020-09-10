@@ -60,8 +60,7 @@ class SpjModel extends Model
     }
     public function updateTransaksiNipKodek($kodes, $nip, $kdk, $statpeg)
     {
-        //$arr = implode("','", $selectkodek);
-        /* if ($statpeg == 6) {
+        if ($statpeg == 6) {
             $trans = DB::table('warehouseclp_db.tt_kegiatan')
                 ->where('kodes', $kodes)
                 ->whereIn('kodek', $kdk)
@@ -71,8 +70,8 @@ class SpjModel extends Model
                 ->where('kodes', $kodes)
                 ->whereIn('kodek', $kdk)
                 ->update(['nip_pptk' => $nip]);
-        } */
-        return $kdk;
+        }
+        return $trans;
     }
     /* ============================================================== */
 }

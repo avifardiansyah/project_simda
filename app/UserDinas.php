@@ -11,7 +11,7 @@ class UserDinas extends Authenticatable
 {
     use Notifiable;
 
-    protected $table = 'tm_xskpd';
+    protected $table = 'warehouseclp_db.tm_xskpd';
     protected $guard = 'dinas';
 
     protected $fillable = [

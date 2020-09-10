@@ -9,9 +9,9 @@ class LoginModel extends Model
 {
     public function authUser($username)
     {
-        return DB::table('tm_xskpd')
-            ->select('id', 'nama', 'nama_pendek', 'kodes', 'pimp', 'namap', 'nipp', 'jabp', 'status_skpd', 'kd_skpd', 'kd_urusan', 'kd_bidang', 'kd_unit', 'kd_sub', 'password')
-            ->where('username', $username)
+        return DB::table('warehouseclp_db.tm_xskpd AS a')
+            ->select('a.id', 'a.nama', 'a.nama_pendek', 'a.kodes', 'a.pimp', 'a.namap', 'a.nipp', 'a.jabp', 'a.status_skpd', 'a.kd_skpd', 'a.kd_urusan', 'a.kd_bidang', 'a.kd_unit', 'a.kd_sub', 'a.password')
+            ->where('a.username', $username)
             ->first();
     }
 }

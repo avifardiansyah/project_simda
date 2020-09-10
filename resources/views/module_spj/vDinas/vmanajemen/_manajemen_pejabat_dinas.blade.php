@@ -339,6 +339,7 @@
                     Notify('Berhasil simpan data', 'top-right', '5000', 'success', 'fa-check', true);
                     document.getElementById("formaddpjb").reset();
                     pejabatdinas();
+                    showkeg.style.display = "none";
                     return false;
                 }
             }

@@ -22,3 +22,12 @@ Route::group(['middleware' => ['guest:dinas']], function () {
     Route::get('/dinas', 'module_spj\spj_dinas\Manajemen@rka')->name('dinas.manajemen.rka');
 });
 
+Route::group(['middleware' => ['guest:admindinas']], function () {
+    Route::get('/admin/dinas', 'module_spj\spj_dinas\Dashboard_dinas@index')->name('dinas.dashboard');
+});
+
+//cetak
+Route::get('/cetak/bku', 'module_cetak\Cetak@cetakBKU')->name('cetak.bku');
+Route::get('/cetak/spj', 'module_cetak\Cetak@cetakSPJ')->name('cetak.spj');
+Route::get('/cetak/kw', 'module_cetak\Cetak@cetakKW')->name('cetak.kw');
+

@@ -1,0 +1,86 @@
+.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+.column {
+    float: left;
+    width: 50%;
+}
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.kop{
+    text-align: center;
+    font-size: 12pt;
+    font-weight: bold;
+    line-height: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.bold{
+    font-weight: bold;
+}
+.ringkasan{
+    text-align: center;
+    font-size: 12pt;
+    line-height: 20px;
+}
+.dataskpd{
+    text-align: center;
+    font-size: 12pt;
+    line-height: 20px;
+}
+table {
+    border-collapse: collapse;
+}
+.uraian{
+    border: 1px solid black;
+}
+table.uraian{
+    border-collapse: collapse;
+    width: 100%;
+}
+table.uraian th{
+    padding: 3px 3px;
+    border: 1px solid black;
+    text-align: center;
+}
+table.uraian td{
+    padding: 3px 3px;
+    border: 1px solid black;
+}
+.kdrek{
+    font-size: 11px;
+    text-align: center;
+}
+.ttd_kanan {
+    position:relative;
+
+}
+.ttd_kiri {
+    position:relative;
+
+}
+.text-center {
+    text-align: center;
+}
+.ttd {
+    page-break-inside:avoid; page-break-after:auto;
+    padding-top: 50px;
+}
+.ttd_atas {
+    page-break-inside:avoid; page-break-after:auto;
+    padding-top: 50px;
+}
+.ttd_bp {
+    page-break-inside:avoid; page-break-after:auto;
+    padding-left: 380px;
+}
+.ttd_pa {
+
+    page-break-inside:avoid; page-break-after:auto;
+    position: absolute;
+    margin-right: 500px;
+    padding-bottom: -100px;
+}

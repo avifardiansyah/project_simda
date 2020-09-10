@@ -46,6 +46,10 @@ return [
             'provider' => 'dinas',
         ],
 
+        'admindinas' => [
+            'driver' => 'session',
+            'provider' => 'admindinas',
+        ],
 
         'api' => [
             'driver' => 'token',
@@ -80,6 +84,11 @@ return [
         'dinas' => [
             'driver' => 'eloquent',
             'model' => App\UserDinas::class,
+        ],
+
+        'admindinas' => [
+            'driver' => 'eloquent',
+            'model' => App\UserAdminDinas::class,
         ],
 
         // 'users' => [

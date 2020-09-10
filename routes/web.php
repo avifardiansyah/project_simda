@@ -18,11 +18,11 @@ Route::post('/login', 'Login@auth')->name('login.proses');
 Route::get('/logout', 'Login@logout')->name('login.logout');
 
 Route::group(['middleware' => ['guest:dinas']], function () {
-    Route::get('/spj', 'module_spj\spj_dinas\Dashboard_dinas@index')->name('dinas.dashboard');
-    Route::get('/dinas', 'module_spj\spj_dinas\Manajemen@rka')->name('dinas.manajemen.rka');
-    Route::get('/pejabatdinas', 'module_spj\spj_dinas\Manajemen@pejabat')->name('dinas.manajemen.pejabat');
-    Route::get('/list/kegiatan/dinas', 'module_spj\spj_dinas\Manajemen@kegiatanperkodes')->name('dinas.manajemen.list.kegiatan');
-    Route::get('/list/pejabat/dinas', 'module_spj\spj_dinas\Manajemen@pejabatperkodes')->name('dinas.manajemen.list.pejabat');
+    Route::get('/dinas', 'module_spj\spj_dinas\Dashboard_dinas@index')->name('dinas.dashboard');
+    Route::get('/dinas/rka', 'module_spj\spj_dinas\Manajemen@rka')->name('dinas.manajemen.rka');
+    Route::get('/dinas/pejabat', 'module_spj\spj_dinas\Manajemen@pejabat')->name('dinas.manajemen.pejabat');
+    Route::get('/dinas/list/kegiatan', 'module_spj\spj_dinas\Manajemen@kegiatanperkodes')->name('dinas.manajemen.list.kegiatan');
+    Route::get('/dinas/list/pejabat', 'module_spj\spj_dinas\Manajemen@pejabatperkodes')->name('dinas.manajemen.list.pejabat');
 
-    Route::post('/pejabatdinas/simpan', 'module_spj\spj_dinas\Manajemen@simpanPejabatDinas')->name('dinas.manajemen.pejabat.post');
+    Route::post('/dinas/pejabat/simpan', 'module_spj\spj_dinas\Manajemen@simpanPejabatDinas')->name('dinas.manajemen.pejabat.post');
 });

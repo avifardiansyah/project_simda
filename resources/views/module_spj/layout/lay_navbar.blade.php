@@ -33,25 +33,26 @@
                                 <li class="username"><a>{{session('user')['username']}}</a></li>
                                 <li class="email"><a>{{session('user')['nama_pendek']}}</a></li>
                                 <!--Avatar Area-->
-                                <li>
+                                <!-- <li>
                                     <div class="avatar-area">
                                         <img src="assets/img/avatars/adam-jansen.jpg" class="avatar">
                                         <span class="caption">Change Photo</span>
                                     </div>
-                                </li>
+                                </li> -->
                                 <!--Avatar Area-->
                                 <li class="edit">
                                     <a href="profile.html" class="pull-left">Profile</a>
-                                    <a href="#" class="pull-right">Setting</a>
+                                    <a href="{{route('login.logout')}}" class="pull-right">Sign out</a>
                                 </li>
                                 <!--Theme Selector Area-->
 
                                 <!--/Theme Selector Area-->
+                                <!-- 
                                 <li class="dropdown-footer">
-                                    <a href="{{route('login.logout')}}">
-                                        Sign out
+                                    <a href="">
+
                                     </a>
-                                </li>
+                                </li> -->
                             </ul>
                             <!--/Login Area Dropdown-->
                         </li>

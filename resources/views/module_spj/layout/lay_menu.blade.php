@@ -13,6 +13,7 @@ $help = new App\Help;
     <!-- Sidebar Menu -->
     <ul class="nav sidebar-menu">
         <!--Dashboard-->
+        @if(session('user')['role'] == "dinas")
         <li class="{{$help->set_active('dinas.dashboard')}}">
             <a href="{{route('dinas.dashboard')}}">
                 <i class="menu-icon glyphicon glyphicon-home"></i>
@@ -41,6 +42,22 @@ $help = new App\Help;
                 </li>
             </ul>
         </li>
+        @elseif(session('user')['role']=="admindinas")
+        @if (session('user')['status'] == 1)
+        @elseif (session('user')['status'] == 2)
+        @elseif (session('user')['status'] == 3)
+        @elseif (session('user')['status'] == 4)
+        @elseif (session('user')['status'] == 5)
+        @elseif (session('user')['status'] == 6)
+        <li class="{{$help->set_active('bpt.dashboard')}}">
+            <a href="{{route('bpt.dashboard')}}">
+                <i class="menu-icon glyphicon glyphicon-home"></i>
+                <span class="menu-text"> Dashboard </span>
+            </a>
+        </li>
+        @endif
+        @endif
+
     </ul>
     <!-- /Sidebar Menu -->
 </div>

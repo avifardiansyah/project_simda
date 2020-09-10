@@ -34,21 +34,4 @@ class LoginModel extends Model
         return $user;
     }
 
-    public function testUser()
-    {
-        return DB::table('simpeg_db.tb_01 as a')
-            ->selectRaw('a.nip,a.gdp,a.nama,a.gdb,a.tglhr,
-            a.alm,a.hp,a.email,a.noktp,a.password,g.jenkel,f.agama,b.idparent,a.idskpd,j.skpd,b.path AS bidang,b.jab,
-            c.golru,b.idesl,d.esl,c.pangkat,a.idjenkedudupeg,h.stspeg')
-            ->LeftJoin('simpeg_db.skpd as b', 'a.idskpd', 'b.idskpd')
-            ->LeftJoin('simpeg_db.a_golruang as c', 'a.idgolrupkt', 'c.idgolru')
-            ->LeftJoin('simpeg_db.a_esl as d', 'a.idesljbt', 'd.idesl')
-            ->LeftJoin('simpeg_db.a_agama as f', 'a.idagama', 'f.idagama')
-            ->LeftJoin('simpeg_db.a_jenkel as g', 'a.idjenkel', 'g.idjenkel')
-            ->LeftJoin('simpeg_db.a_stspeg as h', 'a.idstspeg', 'h.idstspeg')
-            ->LeftJoin('simpeg_db.a_jenkedudupeg as i', 'a.idjenkedudupeg', 'i.idjenkedudupeg')
-            ->LeftJoin('simpeg_db.skpd as j',DB::raw('SUBSTR(a.idskpd,1,2)'),'j.idskpd')
-            ->where('a.nip', '197512022002121004')
-            ->first();
-    }
 }

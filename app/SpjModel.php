@@ -111,5 +111,40 @@ class SpjModel extends Model
             ->where('warehouseclp_db.tt_kegiatan.nip_bpt', $nip_bpt)
             ->first();
     }
+    public function getrincianrekperkodek($kodek, $kodes)
+    {
+        return DB::table('warehouseclp_db.tt_rka_belanja AS a')
+            ->select(DB::raw('SUM(a.total) as totangrek'), 'a.kd_rek', 'b.ket')
+            ->leftJoin('warehouseclp_db.tm_rekening as b', 'a.kd_rek', 'b.kode_rek')
+            ->where('a.kodes', $kodes)
+            ->where('a.kodek', $kodek)
+            ->groupBy('a.kd_rek', 'b.ket')
+            ->get();
+    }
+    public function getrincianrekpjk()
+    {
+        return DB::table('m_rekening')
+            ->get();
+    }
+    public function inserttrans($trans)
+    {
+        return DB::table('superjon_db.m_trans_perincian')
+            ->insert($trans);
+    }
+    public function updatetrans($idtrans, $trans)
+    {
+        return DB::table('superjon_db.m_trans_perincian')
+            ->where('idtransperincian', $idtrans)
+            ->update($trans);
+    }
+    public function getlistrincianspjperkodekkodes($kodek, $kodes)
+    {
+        return DB::table('superjon_db.m_trans_perincian as a')
+            ->select('a.*')
+            ->where('a.kodes', $kodes)
+            ->where('a.kodek', $kodek)
+            ->orderBy('a.urut', 'ASC')
+            ->get();
+    }
     /* ENDADMIN =========================================================*/
 }

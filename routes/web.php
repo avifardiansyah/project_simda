@@ -32,6 +32,10 @@ Route::group(['middleware' => ['guest:admindinas']], function () {
     Route::get('/admin/dinas', 'module_spj\spj_dinas\admin\Dashboard_admin@index')->name('admindinas.dashboard');
     Route::get('/admin/dinas/penatausahaan/spj', 'module_spj\spj_dinas\admin\Penatausahaan@spjbpt')->name('admindinas.penatausahaan');
     Route::get('/admin/dinas/penatausahaan/rinciankegiatan/{id}', 'module_spj\spj_dinas\admin\Penatausahaan@rinciankeg')->name('admindinas.penatausahaan.rincian');
+    Route::get('/admin/dinas/penatausahaan/list', 'module_spj\spj_dinas\admin\Penatausahaan@listrincianspjperkodek')->name('admindinas.penatausahaan.list.rincian');
+
+    Route::post('/admin/dinas/penatausahaan/simpan', 'module_spj\spj_dinas\admin\Penatausahaan@simpanTransaksi')->name('admindinas.penatausahaan.rincian.post');
+    Route::post('/admin/dinas/penatausahaan/ubah', 'module_spj\spj_dinas\admin\Penatausahaan@ubahTransaksi')->name('admindinas.penatausahaan.rincian.update');
 });
 
 //cetak

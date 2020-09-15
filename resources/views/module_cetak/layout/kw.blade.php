@@ -81,6 +81,7 @@
         .ttd_atas {
             padding-top: 50px;
             page-break-inside:avoid; page-break-after:auto;
+
         }
         .ttd_bp {
             page-break-inside:avoid; page-break-after:auto;
@@ -95,6 +96,11 @@
         }
 
         .column {
+            float: left;
+            width: 33.33%;
+        }
+
+        .column_title {
             float: left;
             width: 50%;
         }
@@ -112,10 +118,27 @@
 
         .parallelogram {
             width: 300px;
-            height: 35px;
             transform: skew(-20deg);
             background: rgb(167, 167, 167);
-            margin-left: 20%;
+            margin-left: 5%;
+        }
+
+        .container {
+            height: 50px;
+            position: relative;
+
+        }
+
+        .vertical-center {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+        }
+
+        .garis-bawah {
+            width: 900px;; border-bottom:1px solid black;
         }
 
     </style>
@@ -123,14 +146,14 @@
 <body>
 
     <div class="row">
-        <div class="column"><p class="kop">PEMERINTAH KABUPATEN CILACAP <hr style="padding-left:150px; margin-right: 250px;"></p></div>
-        <div class="column">
+        <div class="column_title"><p class="kop">PEMERINTAH KABUPATEN CILACAP <hr style="padding-left:150px; margin-right: 250px;"></p></div>
+        <div class="column_title">
             <p class="judul"><u>SURAT BUKTI PEMBAYARAN</u></p>
         </div>
     </div>
 
     <div class="row">
-        <div class="column">
+        <div class="column_title">
             <table>
                 <tbody>
                     <tr>
@@ -147,7 +170,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="column">
+        <div class="column_title">
             <table class="nomor">
                 <tbody>
                     <tr>
@@ -171,49 +194,119 @@
     <table>
         <tbody>
             <tr>
-                <td>Uang Sebesar</td>
+                <td style="width: 130px;">Uang Sebesar</td>
                 <td>:</td>
-                <td>Rp. <div class="parallelogram"></div></td>
+                <td style="height: 50px; vertical-align: middle">
+                    <div class="parallelogram"><p style="text-align: center; font-size: 24px; font-weight: bold; transform: skew(20deg)">300.000.000</p></div>
+                </td>
                 <td></td>
             </tr>
             <tr>
                 <td>Dengan huruf</td>
                 <td>:</td>
-                <td><i>(telungatus juta dollar)</i></td>
+                <td><i>(telungatus juta dollar)</i><div class="garis-bawah"></div></td>
             </tr>
             <tr>
                 <td>Untuk Pembayaran</td>
                 <td>:</td>
-                <td>Beli sendok dan garpu emas 24 karat</td>
+                <td style="width: 720px; border-bottom: 1px solid black; !important">Beli sendok dan garpu emas 24 karat </td>
+                <td>Rp. </td>
+                <td style="width: 145px; text-align: right; border-bottom: 1px solid black; !important""> 100.000.000.0000</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td style="width: 720px; border-bottom: 1px solid black; !important"></td>
+                <td>Rp. </td>
+                <td style="width: 145px; text-align: right; border-bottom: 1px solid black; !important""> 100.000.000.0000</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td style="width: 720px; border-bottom: 1px solid black; !important"></td>
+                <td>Rp. </td>
+                <td style="width: 145px; text-align: right; border-bottom: 1px solid black; !important""> 100.000.000.0000</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td style="width: 720px; border-bottom: 1px solid black; !important"></td>
+                <td>Rp. </td>
+                <td style="width: 145px; text-align: right; border-bottom: 1px solid black; !important""> 100.000</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td style="text-align: right; padding-right: 20px;">J u m l a h </td>
+                <td>Rp. </td>
+                <td style="width: 145px; text-align: right; border-bottom: 1px solid black; !important""> 100.000</td>
+            </tr>
+            <tr>
+                <td>Untuk Pekerjaan</td>
+                <td>:</td>
+                <td><u>Penyediaan Makan Siang</u></td>
+                <td></td>
+                <td></td>
+                <td></td>
             </tr>
         </tbody>
     </table>
-
     <!-- TTD -->
     <div class="row ttd_atas">
-        <div class="column">
-            <br>
+        <div class="column"  style="border: solid black; border-bottom: hidden; border-left: hidden; border-right: hidden;">
             <div class=" text-center">
-                Pengguna Anggaran
+                Barang tsb telah diterima pada <br>
+                tgl  ________________{{date('Y')}}
+            </div>
+            <div class=" text-center" style="padding-top: 50px;">
+                (.....................................)
+
+            </div>
+            <div class=" text-center" style="padding-top: 5px;">
+                <br>
+            </div>
+            <div class="text-center">
+                Mengetahui <br>
+                PPTK
             </div>
             <div class=" text-center" style="padding-top: 50px;">
                 <u class="bold">Sugimbreng</u> <br>
                 NIP. 194232141293912
             </div>
-
         </div>
-        <div class="column">
+
+        <div class="column"  style="border: solid black;  border-bottom: hidden; ">
             <div class="text-center">
-                Cilacap, 34 April 2040
+                Setuju dibayar
+                Sekda/Ka. Bag/Ka. Dinas
+                Pengguna/Kuasa Pengguna Anggaran
             </div>
-            <div class=" text-center">
+
+            <div class=" text-center" style="padding-top: 50px;">
+                <u class="bold">M. Wicaksono</u> <br>
+                NIP. 194232141293912
+            </div>
+            <div class="text-center">
+                Dibayarkan pd tgl ________________{{date('Y')}}<br>
                 Bendahara Pengeluaran Pembantu
             </div>
-
             <div class=" text-center" style="padding-top: 50px;">
                 <u class="bold">Roy Sumarno</u> <br>
                 NIP. 194232141293912
             </div>
+        </div>
+
+        <div class="column"  style="border: solid black;  border-bottom: hidden; border-left: hidden; border-right: hidden; padding-left: 20px;">
+            <div class="text-center">
+                Cilacap, ________________{{date('Y')}}
+            </div>
+            <div class=" text-center" style="padding-top: 70px;">
+                (.....................................)
+            </div>
+            <div style="padding-top: 50px;">
+                Alamat
+            </div>
+
         </div>
     </div>
 

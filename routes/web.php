@@ -37,4 +37,5 @@ Route::group(['middleware' => ['guest:admindinas']], function () {
 Route::get('/cetak/bku', 'module_cetak\Cetak@cetakBKU')->name('cetak.bku');
 Route::get('/cetak/spj', 'module_cetak\Cetak@cetakSPJ')->name('cetak.spj');
 Route::get('/cetak/kw', 'module_cetak\Cetak@cetakKW')->name('cetak.kw');
-
+Route::get('/cetak/bpj', 'module_cetak\Cetak@cetakBpj')->name('cetak.bpj');
+Route::get('/cetak/brp', 'module_cetak\Cetak@cetakBrp')->name('cetak.brp');

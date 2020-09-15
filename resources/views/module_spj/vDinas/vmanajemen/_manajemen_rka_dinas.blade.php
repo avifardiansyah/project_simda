@@ -37,7 +37,7 @@
         <div class="row">
             <div class="col-xs-12 col-md-12">
                 <div class="widget">
-                    <div class="widget-header ">
+                    <div class="widget-header bg-lightred">
                         <span class="widget-caption"><i class="fa fa-th-large"></i> Rencana Kegiatan dan Anggaran <?= date('Y'); ?></span>
                         <div class="widget-buttons">
                             <a href="#" data-toggle="maximize">

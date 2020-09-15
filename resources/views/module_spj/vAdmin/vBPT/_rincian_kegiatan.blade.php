@@ -314,7 +314,7 @@
                                                             <th width="5%">No Bukti.</th>
                                                             <th width="5%">Jns.</th>
                                                             <th>KET Transaksi.</th>
-                                                            <th colspan="2" style="text-align: center;">Anggaran.</th>
+                                                            <th colspan="2" style="text-align: center;">Transaksi.</th>
                                                             <th width="5%">JENIS.</th>
                                                             <th colspan="2" style="text-align: center;">Rek Rujukan.</th>
                                                             <th style="text-align: center;" width="7%">#</th>
@@ -335,7 +335,7 @@
                                                             <th>13.</th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody id="bdrincspj"></tbody>
+                                                    <tbody id="bdrincspj"> </tbody>
                                                 </table>
                                             </div>
                                         </div>
@@ -366,6 +366,25 @@
             </div>
         </div>
     </div>
+</div>
+<div class="modal fade bs-example-modal-sm" id="mdlhps" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="mySmallModalLabel"><i class="fa fa-bullhorn"></i> Information</h4>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="xidtrans" name="xidtrans" hidden>
+                <p>Apakah anda yakin untuk menghapus transaksi ini?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Kembali</button>
+                <button type="button" class="btn btn-danger" id="btnhapus" data-dismiss="modal">Hapus</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
 </div>
 @endsection
 @section('javascript')
@@ -410,11 +429,15 @@
 
     function listrincianspj() {
         var bdrincspj = '';
+        var bdrincspj2 = '';
         var kds = $('#kodeks').val();
         var jns;
         var nobkt;
         var kdrjk;
         var ketrjk;
+        var totanggaranmsk = 0;
+        var totanggaranklr = 0;
+
         $.ajax({
             url: "{{route('admindinas.penatausahaan.list.rincian')}}",
             type: 'GET',
@@ -426,6 +449,8 @@
             async: true,
             success: function(w) {
                 for (let k = 0; k < w.length; k++) {
+                    totanggaranmsk += parseFloat(w[k].ang_masuk);
+                    totanggaranklr += parseFloat(w[k].ang_keluar);
                     if (w[k].jns_trans == 1) {
                         jns = "T";
                     } else {
@@ -446,6 +471,21 @@
                         ketrjk = w[k].ket_rek_rujukan;
                     }
 
+                    bdrincspj2 = '<tr style="background-color:#89f0d9">' +
+                        '<td style="text-align:center"><strong>Total</strong></td>' +
+                        '<td></td>' +
+                        '<td></td>' +
+                        '<td></td>' +
+                        '<td></td>' +
+                        '<td></td>' +
+                        '<td></td>' +
+                        '<td style="text-align:right"><strong>' + convertcurrencyIDR(totanggaranmsk) + '</strong></td>' +
+                        '<td style="text-align:right"><strong>' + convertcurrencyIDR(totanggaranklr) + '</strong></td>' +
+                        '<td></td>' +
+                        '<td></td>' +
+                        '<td></td>' +
+                        '<td></td>' +
+                        +'</tr>';
                     bdrincspj += '<tr>' +
                         '<td>' + convertDateDBtoIndo(w[k].tgl_trans_perincian) + '</td>' +
                         '<td>' + w[k].kd_rek + '</td>' +
@@ -466,7 +506,9 @@
                         '</td>' +
                         '</tr>';
                 }
-                $('#bdrincspj').html(bdrincspj);
+                //alert(totanggaranmsk);
+                $('#bdrincspj').html(bdrincspj2);
+                $('#bdrincspj').append(bdrincspj);
             }
         })
     }
@@ -577,6 +619,34 @@
             document.getElementById("TU").checked = true;
         }
 
+    })
+
+    $('#bdrincspj').on('click', '.delete', function() {
+        $('#mdlhps').modal('show');
+        $('#xidtrans').val($(this).attr('data-id'));
+    })
+    $('#btnhapus').on('click', function() {
+        var xid = $('#xidtrans').val();
+        $.ajax({
+            url: "{{route('admindinas.penatausahaan.rincian.delete')}}",
+            type: 'GET',
+            data: {
+                xid: xid
+            },
+            dataType: 'JSON',
+            cache: false,
+            success: function(r) {
+                if (r.stat == true) {
+                    Notify('Berhasil hapus data', 'top-right', '5000', 'blue', 'fa-check', true);
+                    $('#xidtrans').val("");
+                    listrincianspj();
+                    return false;
+                } else {
+                    Notify('Terjadi kesalahan', 'top-right', '5000', 'danger', 'fa-bolt', true);
+                    return false;
+                }
+            }
+        })
     })
 </script>
 @endsection

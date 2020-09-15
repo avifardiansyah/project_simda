@@ -126,4 +126,14 @@ class Penatausahaan extends Controller
         $a = $this->model->getlistrincianspjperkodekkodes($kodek, $kodes);
         echo json_encode($a);
     }
+
+    public function hapusTransaksi(Request $get)
+    {
+        $idtrans = $get->xid;
+        if (!$this->model->deletetrans($idtrans)) {
+            echo json_encode(['stat' => false]);
+        } else {
+            echo json_encode(['stat' => true]);
+        }
+    }
 }

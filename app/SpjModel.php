@@ -146,5 +146,11 @@ class SpjModel extends Model
             ->orderBy('a.urut', 'ASC')
             ->get();
     }
+    public function deletetrans($idtrans)
+    {
+        return DB::table('superjon_db.m_trans_perincian')
+            ->where('idtransperincian', $idtrans)
+            ->delete();
+    }
     /* ENDADMIN =========================================================*/
 }

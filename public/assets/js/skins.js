@@ -15,26 +15,25 @@ if (readCookie("current-skin")) {
 if (location.pathname != "/index-rtl-fa.html" && location.pathname != "/index-rtl-ar.html") {
     if (readCookie("rtl-support")) {
         if (document.getElementById("beyond-link") != null)
-            document.getElementById("beyond-link").setAttribute("href", "assets/css/beyond-rtl.min.css");
+            document.getElementById("beyond-link").setAttribute("href", "{{asset('assets/css/beyond-rtl.min.css')}}");
         if (document.getElementById("bootstrap-rtl-link") != null)
-            document.getElementById("bootstrap-rtl-link").setAttribute("href", "assets/css/bootstrap-rtl.min.css");
+            document.getElementById("bootstrap-rtl-link").setAttribute("href", "{{asset('assets/css/bootstrap-rtl.min.css')}}");
         //Resolve 4095 Issue With IE<=9
         if (getInternetExplorerVersion() <= 9 && getInternetExplorerVersion() > 0) {
             var a = document.createElement('link');
-            a.href = "assets/css/4095-rtl.min.css";
+            a.href = "{{asset('assets/css/4095-rtl.min.css')}}";
             a.rel = "stylesheet";
             document.getElementsByTagName("head")[0].appendChild(a);
         }
-    }
-    else {
+    } else {
         if (document.getElementById("beyond-link") != null)
-            document.getElementById("beyond-link").setAttribute("href", "assets/css/beyond.min.css");
+            document.getElementById("beyond-link").setAttribute("href", "{{asset('assets/css/beyond.min.css')}}");
         if (document.getElementById("bootstrap-rtl-link") != null)
             document.getElementById("bootstrap-rtl-link").setAttribute("href", "");
         //Resolve 4095 Issue With IE<=9
         if (getInternetExplorerVersion() <= 9 && getInternetExplorerVersion() > 0) {
             var a = document.createElement('link');
-            a.href = "assets/css/4095.min.css";
+            a.href = "{{asset('assets/css/4095.min.css')}}";
             a.rel = "stylesheet";
             document.getElementsByTagName("head")[0].appendChild(a);
         }
@@ -47,8 +46,7 @@ function createCookie(name, value, days) {
         var date = new Date();
         date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
         var expires = "; expires=" + date.toGMTString();
-    }
-    else var expires = "";
+    } else var expires = "";
     document.cookie = name + "=" + value + expires + "; path=/";
 }
 

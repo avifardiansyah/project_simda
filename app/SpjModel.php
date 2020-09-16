@@ -74,4 +74,83 @@ class SpjModel extends Model
         return $trans;
     }
     /* ============================================================== */
+    /* ADMIN =========================================================*/
+    public function getkegiatandinasperBpt($nip_bpt, $kodes)
+    {
+        return DB::table('warehouseclp_db.tt_kegiatan')
+            ->select('warehouseclp_db.tt_kegiatan.*', 'warehouseclp_db.tt_program.ket_program', 'simpeg_db.tb_01.gdp', 'simpeg_db.tb_01.nama', 'simpeg_db.tb_01.gdb')
+            ->LEFTJOIN('warehouseclp_db.tt_program', function ($join) {
+                $join->on('warehouseclp_db.tt_kegiatan.kodes', 'warehouseclp_db.tt_program.kodes');
+                $join->on('warehouseclp_db.tt_kegiatan.program_kd', 'warehouseclp_db.tt_program.program_kd');
+            })
+            ->LEFTJOIN('simpeg_db.tb_01', 'warehouseclp_db.tt_kegiatan.nip_pptk', 'simpeg_db.tb_01.nip')
+            ->where('warehouseclp_db.tt_kegiatan.kodes', $kodes)
+            ->where('warehouseclp_db.tt_kegiatan.nip_bpt', $nip_bpt)
+            ->get();
+    }
+    public function getrinciankegperkodek($kodes, $kodek)
+    {
+        return DB::table('warehouseclp_db.tt_rka_belanja AS a')
+            ->select('a.*', 'b.ket')
+            ->leftJoin('warehouseclp_db.tm_rekening AS b', 'a.kd_rek', 'b.kode_rek')
+            ->where('a.kodes', $kodes)
+            ->where('a.kodek', $kodek)
+            ->get();
+    }
+    public function getdetailkegperkodekbpt($kodek, $kodes, $nip_bpt)
+    {
+        return DB::table('warehouseclp_db.tt_kegiatan')
+            ->select('warehouseclp_db.tt_kegiatan.*', 'warehouseclp_db.tt_program.ket_program', 'simpeg_db.tb_01.gdp', 'simpeg_db.tb_01.nama', 'simpeg_db.tb_01.gdb')
+            ->LEFTJOIN('warehouseclp_db.tt_program', function ($join) {
+                $join->on('warehouseclp_db.tt_kegiatan.kodes', 'warehouseclp_db.tt_program.kodes');
+                $join->on('warehouseclp_db.tt_kegiatan.program_kd', 'warehouseclp_db.tt_program.program_kd');
+            })
+            ->LEFTJOIN('simpeg_db.tb_01', 'warehouseclp_db.tt_kegiatan.nip_pptk', 'simpeg_db.tb_01.nip')
+            ->where('warehouseclp_db.tt_kegiatan.kodes', $kodes)
+            ->where('warehouseclp_db.tt_kegiatan.kodek', $kodek)
+            ->where('warehouseclp_db.tt_kegiatan.nip_bpt', $nip_bpt)
+            ->first();
+    }
+    public function getrincianrekperkodek($kodek, $kodes)
+    {
+        return DB::table('warehouseclp_db.tt_rka_belanja AS a')
+            ->select(DB::raw('SUM(a.total) as totangrek'), 'a.kd_rek', 'b.ket')
+            ->leftJoin('warehouseclp_db.tm_rekening as b', 'a.kd_rek', 'b.kode_rek')
+            ->where('a.kodes', $kodes)
+            ->where('a.kodek', $kodek)
+            ->groupBy('a.kd_rek', 'b.ket')
+            ->get();
+    }
+    public function getrincianrekpjk()
+    {
+        return DB::table('m_rekening')
+            ->get();
+    }
+    public function inserttrans($trans)
+    {
+        return DB::table('superjon_db.m_trans_perincian')
+            ->insert($trans);
+    }
+    public function updatetrans($idtrans, $trans)
+    {
+        return DB::table('superjon_db.m_trans_perincian')
+            ->where('idtransperincian', $idtrans)
+            ->update($trans);
+    }
+    public function getlistrincianspjperkodekkodes($kodek, $kodes)
+    {
+        return DB::table('superjon_db.m_trans_perincian as a')
+            ->select('a.*')
+            ->where('a.kodes', $kodes)
+            ->where('a.kodek', $kodek)
+            ->orderBy('a.urut', 'ASC')
+            ->get();
+    }
+    public function deletetrans($idtrans)
+    {
+        return DB::table('superjon_db.m_trans_perincian')
+            ->where('idtransperincian', $idtrans)
+            ->delete();
+    }
+    /* ENDADMIN =========================================================*/
 }

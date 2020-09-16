@@ -13,7 +13,6 @@ class Login extends Controller
     public function __construct()
     {
         $this->model = new LoginModel;
-
     }
 
     public function index()
@@ -36,8 +35,7 @@ class Login extends Controller
 
         $get_user = $this->model->authUser($post->username, $post->password);
 
-        if(empty($get_user))
-        {
+        if (empty($get_user)) {
             return redirect()->route('login.form')->with('alert', 'Login gagal, mohon cek kembali username dan password anda');
         }elseif(!empty($get_user['dinas']))
         {
@@ -52,8 +50,7 @@ class Login extends Controller
                 session(['user' => $user]);
                 $this->logUser(session('user')['nama'], 'login');
                 return redirect()->route('dinas.dashboard');
-            }else
-            {
+            } else {
                 return redirect()->route('login.form')->with('alert', 'Login gagal, mohon cek kembali username dan password anda');
             }
         }

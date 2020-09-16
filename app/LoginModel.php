@@ -33,4 +33,10 @@ class LoginModel extends Model
 
         return $user;
     }
+
+    public function insertLog($data)
+    {
+        return DB::table('superjon_db.m_log')
+            ->insert($data);
+    }
 }

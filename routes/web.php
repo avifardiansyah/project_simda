@@ -27,7 +27,7 @@ Route::group(['middleware' => ['guest:dinas']], function () {
 });
 
 Route::group(['middleware' => ['guest:admindinas']], function () {
-    Route::get('/admin/dinas', 'module_spj\spj_dinas\Dashboard_dinas@index')->name('dinas.dashboard');
+    Route::get('/admin/dinas', 'module_spj\spj_dinas\Dashboard_dinas@index')->name('admindinas.dashboard');
 });
 
 //cetak

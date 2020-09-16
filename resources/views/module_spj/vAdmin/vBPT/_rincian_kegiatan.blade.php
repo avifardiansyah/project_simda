@@ -196,7 +196,7 @@
                                                                         <label for="inputPassword3" class="col-sm-1 control-label no-padding-right">Tanggal</label>
                                                                         <div class="col-sm-10">
                                                                             <div class="input-group">
-                                                                                <input class="form-control date-picker" id="id-date-picker-1" name="tgl_trans_perincian" type="text" data-date-format="yyyy-mm-dd" readonly placeholder="Tanggal">
+                                                                                <input class="form-control date-picker" id="id-date-picker-1" name="tgl_trans_perincian" type="text" data-date-format="yyyy-mm-dd" readonly placeholder="Tanggal" value="<?= date('Y-m-d'); ?>">
                                                                                 <span class="input-group-addon">
                                                                                     <i class="fa fa-calendar"></i>
                                                                                 </span>
@@ -228,11 +228,38 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
+                                                                        <label for="inputPassword3" class="col-sm-1 control-label no-padding-right">Jenis Anggaran</label>
+                                                                        <div class="col-sm-2">
+                                                                            <label>
+                                                                                <input class="form-control" type="radio" id="LB" name="jang" value="LB">
+                                                                                <span class="text">LB </span>
+                                                                            </label>
+                                                                        </div>
+                                                                        <div class="col-sm-2">
+                                                                            <label>
+                                                                                <input class="form-control" type="radio" id="LG" name="jang" value="LG">
+                                                                                <span class="text">LG </span>
+                                                                            </label>
+                                                                        </div>
+                                                                        <div class="col-sm-3">
+                                                                            <label>
+                                                                                <input class="form-control" type="radio" id="UPGU" name="jang" value="UP/GU">
+                                                                                <span class="text">UP/GU </span>
+                                                                            </label>
+                                                                        </div>
+                                                                        <div class="col-sm-2">
+                                                                            <label>
+                                                                                <input class="form-control" type="radio" id="TU" name="jang" value="TU">
+                                                                                <span class="text">TU </span>
+                                                                            </label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
                                                                         <label for="inputPassword3" class="col-sm-1 control-label no-padding-right">Jenis</label>
                                                                         <div class="col-sm-3">
                                                                             <label>
                                                                                 <input class="form-control" type="radio" id="TR" name="jt" value="1">
-                                                                                <span class="text">Transfer </span>
+                                                                                <span class="text">Bank </span>
                                                                             </label>
                                                                         </div>
                                                                         <div class="col-sm-3">
@@ -452,9 +479,9 @@
                     totanggaranmsk += parseFloat(w[k].ang_masuk);
                     totanggaranklr += parseFloat(w[k].ang_keluar);
                     if (w[k].jns_trans == 1) {
-                        jns = "T";
-                    } else {
                         jns = "B";
+                    } else {
+                        jns = "T";
                     }
 
                     if (w[k].nobukti == null) {
@@ -500,7 +527,7 @@
                         '<td>' + kdrjk + '</td>' +
                         '<td>' + ketrjk + '</td>' +
                         '<td>' +
-                        '<a class="btn btn-warning btn-sm icon-only white edit" data-id="' + w[k].idtransperincian + '" data-tgl="' + w[k].tgl_trans_perincian + '" data-kdrek="' + w[k].kd_rek + '" data-ketrek="' + w[k].ket_rek + '" data-kdrekrjk="' + w[k].kd_rek_rujukan + '" data-ketrekrjk="' + w[k].ket_rek_rujukan + '" data-kettrans="' + w[k].ket_trans_perincian + '" data-urut="' + w[k].urut + '" data-jns="' + w[k].jns_trans + '" data-nobkt="' + w[k].nobukti + '" data-angmsk="' + w[k].ang_masuk + '" data-angklr="' + w[k].ang_keluar + '"><i class="fa fa-pencil"></i></a>&nbsp' +
+                        '<a class="btn btn-warning btn-sm icon-only white edit" data-id="' + w[k].idtransperincian + '" data-tgl="' + w[k].tgl_trans_perincian + '" data-kdrek="' + w[k].kd_rek + '" data-ketrek="' + w[k].ket_rek + '" data-kdrekrjk="' + w[k].kd_rek_rujukan + '" data-ketrekrjk="' + w[k].ket_rek_rujukan + '" data-kettrans="' + w[k].ket_trans_perincian + '" data-urut="' + w[k].urut + '" data-jns="' + w[k].jns_trans + '" data-jang="' + w[k].jns_trans_ang + '" data-nobkt="' + w[k].nobukti + '" data-angmsk="' + w[k].ang_masuk + '" data-angklr="' + w[k].ang_keluar + '"><i class="fa fa-pencil"></i></a>&nbsp' +
                         '<a class="btn btn-danger btn-sm icon-only white delete" data-id="' + w[k].idtransperincian + '" ><i class="fa fa-trash"></i></a>&nbsp' +
                         '<a class="btn btn-azure btn-sm icon-only white print" data-id="' + w[k].idtransperincian + '" ><i class="fa fa-print"></i></a>&nbsp' +
                         '</td>' +
@@ -612,12 +639,24 @@
         } else {
             $('[name="nobukti"]').val("");
         }
+        var jang = $(this).attr('data-jang');
+        if (jang == "LB") {
+            document.getElementById("LB").checked = true;
+        } else if (jang == "LG") {
+            document.getElementById("LG").checked = true;
+        } else if (jang == "UP/GU") {
+            document.getElementById("UPGU").checked = true;
+        } else {
+            document.getElementById("TU").checked = true;
+        }
         var jns = $(this).attr('data-jns');
         if (jns == "1") {
             document.getElementById("TR").checked = true;
         } else {
             document.getElementById("TU").checked = true;
         }
+
+
 
     })
 

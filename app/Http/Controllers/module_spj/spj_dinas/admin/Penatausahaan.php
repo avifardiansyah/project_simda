@@ -45,8 +45,8 @@ class Penatausahaan extends Controller
         $trans['nip'] = $nip;
         $trans['kd_rek'] = $post->trans_kd_rek;
         $trans['ket_rek'] = $post->trans_ket_rek;
-        $trans['kd_rek_rujukan'] = $post->trans_kd_rek_rujukan;
-        $trans['ket_rek_rujukan'] = $post->trans_ket_rek_rujukan;
+        $trans['kd_rek_rujukan'] = $post->trans_kd_rek_rujuk;
+        $trans['ket_rek_rujukan'] = $post->trans_kd_rek_rujuk;
         $trans['urut'] = $post->urut;
         $trans['bulan_trans'] = $bln;
         $trans['tgl_trans_perincian'] = $post->tgl_trans_perincian;
@@ -64,7 +64,7 @@ class Penatausahaan extends Controller
         }
         $trans['ang_keluar'] = $keluar;
         $trans['jns_trans'] = $post->jt;
-        $trans['jns_trans_ang'] = "UP";
+        $trans['jns_trans_ang'] = $post->jang;
         $trans['nobukti'] = $post->nobukti;
         $trans['tgl_isian_trans'] = $tglisian;
 
@@ -89,8 +89,8 @@ class Penatausahaan extends Controller
         $trans['nip'] = $nip;
         $trans['kd_rek'] = $post->trans_kd_rek;
         $trans['ket_rek'] = $post->trans_ket_rek;
-        $trans['kd_rek_rujukan'] = $post->trans_kd_rek_rujukan;
-        $trans['ket_rek_rujukan'] = $post->trans_ket_rek_rujukan;
+        $trans['kd_rek_rujukan'] = $post->trans_kd_rek_rujuk;
+        $trans['ket_rek_rujukan'] = $post->trans_ket_rek_rujuk;
         $trans['urut'] = $post->urut;
         $trans['bulan_trans'] = $bln;
         $trans['tgl_trans_perincian'] = $post->tgl_trans_perincian;
@@ -108,7 +108,7 @@ class Penatausahaan extends Controller
         }
         $trans['ang_keluar'] = $keluar;
         $trans['jns_trans'] = $post->jt;
-        $trans['jns_trans_ang'] = "UP";
+        $trans['jns_trans_ang'] = $post->jang;
         $trans['nobukti'] = $post->nobukti;
         $trans['tgl_isian_trans'] = $tglisian;
 

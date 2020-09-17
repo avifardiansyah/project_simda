@@ -26,6 +26,7 @@ Route::group(['middleware' => ['guest:dinas']], function () {
     Route::get('/dinas/list/pejabat', 'module_spj\spj_dinas\Manajemen@pejabatperkodes')->name('dinas.manajemen.list.pejabat');
 
     Route::post('/dinas/pejabat/simpan', 'module_spj\spj_dinas\Manajemen@simpanPejabatDinas')->name('dinas.manajemen.pejabat.post');
+
 });
 
 Route::group(['middleware' => ['guest:admindinas']], function () {

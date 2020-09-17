@@ -70,6 +70,7 @@ $help = new App\Help;
                 </li>
             </ul>
         </li>
+
         @endif
         @endif
 

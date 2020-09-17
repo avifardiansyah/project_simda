@@ -43,6 +43,7 @@ Purchase: https://wrapbootstrap.com/theme/beyondadmin-adminapp-angularjs-mvc-WB0
     <link href="{{asset('assets/vendor/datatables.net-scroller-bs/css/scroller.bootstrap.min.css')}}" rel="stylesheet">
 
     <!--Skin Script: Place this script in head to load scripts for skins and rtl support-->
+    <link rel="stylesheet" href="{{asset('assets/css/beyond.min.css')}}">
     <script src="{{asset('assets/js/skins.min.js')}}"></script>
 </head>
 <!-- /Head -->
@@ -90,6 +91,8 @@ Purchase: https://wrapbootstrap.com/theme/beyondadmin-adminapp-angularjs-mvc-WB0
     <script src="{{asset('assets/vendor/datatables.net-responsive/js/dataTables.responsive.min.js')}}"></script>
     <script src="{{asset('assets/vendor/datatables.net-responsive-bs/js/responsive.bootstrap.js')}}"></script>
     <script src="{{asset('assets/vendor/datatables.net-scroller/js/dataTables.scroller.min.js')}}"></script>
+    <!--Bootstrap Date Picker-->
+    <script src="{{asset('assets/js/datetime/bootstrap-datepicker.js')}}"></script>
     <!--Beyond Scripts-->
     <script src="{{asset('assets/js/select2/select2.js')}}"></script>
     <script src="{{asset('assets/js/toastr/toastr.js')}}"></script>

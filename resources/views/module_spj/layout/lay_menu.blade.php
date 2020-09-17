@@ -1,7 +1,6 @@
 @php
 $help = new App\Help;
 @endphp
-
 <div class="page-sidebar menu-compact" id="sidebar">
     <!-- Page Sidebar Header-->
     <div class="sidebar-header-wrapper">
@@ -17,7 +16,7 @@ $help = new App\Help;
         <li class="{{$help->set_active('dinas.dashboard')}}">
             <a href="{{route('dinas.dashboard')}}">
                 <i class="menu-icon glyphicon glyphicon-home"></i>
-                <span class="menu-text"> Dashboard </span>
+                <span class="menu-text"> Beranda </span>
             </a>
         </li>
         <!--UI Elements-->
@@ -43,18 +42,35 @@ $help = new App\Help;
             </ul>
         </li>
         @elseif(session('user')['role']=="admindinas")
-        @if (session('user')['status'] == 1)
-        @elseif (session('user')['status'] == 2)
-        @elseif (session('user')['status'] == 3)
-        @elseif (session('user')['status'] == 4)
-        @elseif (session('user')['status'] == 5)
-        @elseif (session('user')['status'] == 6)
-        <li class="{{$help->set_active('bpt.dashboard')}}">
-            <a href="{{route('bpt.dashboard')}}">
+        <li class="{{$help->set_active('admindinas.dashboard')}}">
+            <a href="{{route('admindinas.dashboard')}}">
                 <i class="menu-icon glyphicon glyphicon-home"></i>
-                <span class="menu-text"> Dashboard </span>
+                <span class="menu-text"> Beranda </span>
             </a>
         </li>
+        @if (session('user')['status']==6)
+        <li class="{{$help->set_active2(['dinas.manajemen.rka'])}}">
+            <a href="#" class="menu-dropdown">
+                <i class="menu-icon fa fa-desktop"></i>
+                <span class="menu-text"> Penatausahaan </span>
+
+                <i class="menu-expand"></i>
+            </a>
+
+            <ul class="submenu">
+                <li class="{{$help->set_active('admindinas.penatausahaan')}}">
+                    <a href="{{route('admindinas.penatausahaan')}}">
+                        <span class="menu-text">SPJ</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="#">
+                        <span class="menu-text">Cetak</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
         @endif
         @endif
 

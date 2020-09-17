@@ -5,7 +5,7 @@
             <div class="navbar-header pull-left">
                 <a href="#" class="navbar-brand">
                     <small>
-                        <img src="assets/img/superjon_full.png" alt="" />
+                        <img src="{{asset('assets/img/superjon_full.png')}}" alt="" />
                     </small>
                 </a>
             </div>
@@ -22,7 +22,7 @@
                         <li>
                             <a class="login-area dropdown-toggle" data-toggle="dropdown">
                                 <div class="avatar" title="View your public profile">
-                                    <img src="assets/img/avatars/adam-jansen.jpg">
+                                    <img src="{{asset('assets/img/avatars/adam-jansen.jpg')}}">
                                 </div>
                                 <section>
                                     <h2><span class="profile"><span>{{session('user')['nama']}}</span></span></h2>
@@ -31,7 +31,10 @@
                             <!--Login Area Dropdown-->
                             <ul class="pull-right dropdown-menu dropdown-arrow dropdown-login-area">
                                 <li class="username"><a>{{session('user')['username']}}</a></li>
+                                @if(session('user')['role']=="dinas")
                                 <li class="email"><a>{{session('user')['nama_pendek']}}</a></li>
+                                @endif
+
                                 <!--Avatar Area-->
                                 <!-- <li>
                                     <div class="avatar-area">

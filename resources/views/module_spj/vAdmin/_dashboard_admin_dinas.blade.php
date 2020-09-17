@@ -9,7 +9,7 @@ $help = new App\Help;
         <ul class="breadcrumb">
             <li class="active">
                 <i class="fa fa-home"></i>
-                <a href="#">Home</a>
+                <a href="{{route('dinas.dashboard')}}">Home</a>
             </li>
         </ul>
     </div>
